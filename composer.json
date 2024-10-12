@@ -1,0 +1,19 @@
+{
+    "name": "knomic/s3-media-handler",
+    "description": "A WordPress Plugin for S3 Upload",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Samson Moses",
+            "email": "knomic10@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "aws/aws-sdk-php": "^3.269"
+    },
+    "autoload": {
+        "psr-4": {"includes\\": "./includes"}
+    }
+}
