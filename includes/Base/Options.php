@@ -2,37 +2,34 @@
 
 namespace includes\Base;
 
-class Options
-{
+class Options {
     /**
      * @return void
      */
-    public function register() : void
-    {
-        add_action('admin_init', [$this, 'registerSettings']);
+    public function register() {
+        add_action('admin_init', array($this, 'registerSettings'));
     }
 
     /**
      * @return void
      */
-    public function registerSettings() : void
-    {
-        register_setting( PLUGIN_OPTION_GROUP, 's3_bucket_name');
-        register_setting( PLUGIN_OPTION_GROUP, 's3_region');
-        register_setting( PLUGIN_OPTION_GROUP, 's3_access_key');
-        register_setting( PLUGIN_OPTION_GROUP, 's3_secret_key');
+    public function registerSettings() {
+        register_setting(PLUGIN_OPTION_GROUP, 's3_bucket_name');
+        register_setting(PLUGIN_OPTION_GROUP, 's3_region');
+        register_setting(PLUGIN_OPTION_GROUP, 's3_access_key');
+        register_setting(PLUGIN_OPTION_GROUP, 's3_secret_key');
 
         add_settings_section(
             's3_options_section',
             'S3 Options',
-            [$this, 'optionsSectionCallback'],
+            array($this, 'optionsSectionCallback'),
             's3-media-handler-settings'
         );
 
         add_settings_field(
             's3_media_handler_bucket_name',
             'S3 Bucket Name',
-            [$this, 'bucketNameOption'],
+            array($this, 'bucketNameOption'),
             's3-media-handler-settings',
             's3_options_section'
         );
@@ -40,7 +37,7 @@ class Options
         add_settings_field(
             's3_media_handler_region',
             'S3 Region',
-            [$this, 'regionOption'],
+            array($this, 'regionOption'),
             's3-media-handler-settings',
             's3_options_section'
         );
@@ -48,7 +45,7 @@ class Options
         add_settings_field(
             's3_media_handler_access_key',
             'S3 Access Key',
-            [$this, 'accessKeyOption'],
+            array($this, 'accessKeyOption'),
             's3-media-handler-settings',
             's3_options_section'
         );
@@ -56,7 +53,7 @@ class Options
         add_settings_field(
             's3_media_handler_secret_key',
             'S3 Secret Key',
-            [$this, 'secretKeyOption'],
+            array($this, 'secretKeyOption'),
             's3-media-handler-settings',
             's3_options_section'
         );
@@ -67,8 +64,7 @@ class Options
      * The Options section callback
      * @return void
      */
-    public function optionsSectionCallback() : void
-    {
+    public function optionsSectionCallback() {
         echo 'Enter AWS S3 options below:';
     }
 
@@ -76,8 +72,7 @@ class Options
      * Bucket name field
      * @return void
      */
-    public function bucketNameOption() : void
-    {
+    public function bucketNameOption() {
         $option = S3_BUCKET_NAME;
         echo '<input type="text" name="s3_bucket_name" value="' . esc_attr($option) . '" required/>';
     }
@@ -86,8 +81,7 @@ class Options
      * Region field
      * @return void
      */
-    public function regionOption() : void
-    {
+    public function regionOption() {
         $option = S3_REGION;
         echo '<input type="text" name="s3_region" value="' . esc_attr($option) . '" required/>';
     }
@@ -96,8 +90,7 @@ class Options
      * Access key field
      * @return void
      */
-    public function accessKeyOption() : void
-    {
+    public function accessKeyOption() {
         $option = S3_ACCESS_KEY;
         echo '<input type="password" name="s3_access_key" value="' . esc_attr($option) . '" required/>';
     }
@@ -106,8 +99,7 @@ class Options
      * Secret key field
      * @return void
      */
-    public function secretKeyOption() : void
-    {
+    public function secretKeyOption() {
         $option = S3_SECRET_KEY;
         echo '<input type="password" name="s3_secret_key" value="' . esc_attr($option) . '" required/>';
     }

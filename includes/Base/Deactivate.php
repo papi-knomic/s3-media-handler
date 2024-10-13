@@ -2,14 +2,12 @@
 
 namespace includes\Base;
 
-class Deactivate
-{
+class Deactivate {
     /**
      * Deactivates the plugin
      * @return void
      */
-    public static function deactivate() : void
-    {
+    public static function deactivate() {
         flush_rewrite_rules();
     }
 }
