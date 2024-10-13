@@ -38,12 +38,12 @@ class Actions {
             if ($cron) {
                 return;
             } else {
-                wp_send_json_error('Please enter options for the s3 bucket');
+                wp_send_json_error(__('Please enter options for the s3 bucket', 's3-media-handler'));
             }
         }
 
         if (!$cron) {
-            wp_send_json_success("Sync has started and will be done in batches");
+            wp_send_json_success(__("Sync has started and will be done in batches", 's3-media-handler'));
         }
 
         // Check if there is any stored progress

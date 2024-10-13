@@ -16,24 +16,24 @@ class Upload {
         if (!Validate::validateOptions()) {
             return array(
                 'status' => false,
-                'message' => 'Please set options for S3 Bucket',
+                'message' => __('Please set options for S3 Bucket', 's3-media-handler'),
             );
         }
 
         $s3 = new S3Client(array(
             'version' => 'latest',
-            'region' => S3_REGION,
+            'region' => S3MH_REGION,
             'credentials' => array(
-                'key' => S3_ACCESS_KEY,
-                'secret' => S3_SECRET_KEY
+                'key' => S3MH_ACCESS_KEY,
+                'secret' => S3MH_SECRET_KEY
             )
         ));
 
-        if ($s3->doesObjectExist(S3_BUCKET_NAME, $s3Key)) {
+        if ($s3->doesObjectExist(S3MH_BUCKET_NAME, $s3Key)) {
             // The file already exists in the S3 bucket, skip the upload
             return array(
                 'status' => false,
-                'message' => 'Object already exists',
+                'message' => __('Object already exists in S3 bucket', 's3-media-handler'),
             );
         }
 
@@ -41,7 +41,7 @@ class Upload {
         if (file_exists($filePath)) {
             try {
                 $result = $s3->putObject(array(
-                    'Bucket' => S3_BUCKET_NAME,
+                    'Bucket' => S3MH_BUCKET_NAME,
                     'Key' => $s3Key,
                     'SourceFile' => $filePath
                 ));
@@ -50,13 +50,21 @@ class Upload {
                 return $result['ObjectURL'] ?: '';
             } catch (Exception $e) {
                 // Handle the exception
-                error_log('S3 upload failed: ' . $e->getMessage());
-                return ''; // Or you can return an error message or take appropriate action
+	            $message = __('S3 upload failed:', 's3-media-handler') . ' ' . $e->getMessage();
+                error_log($message);
+                return array(
+		            'status' => false,
+		            'message' => $message
+	            ); // Or you can return an error message or take appropriate action
             }
         } else {
             // File does not exist
-            error_log('File not found: ' . $filePath);
-            return ''; // Or you can return an error message or take appropriate action
+	        $message = __('File not found:', 's3-media-handler') . ' ' . $filePath;
+            error_log($message);
+            return array(
+				'status' => false,
+	            'message' => $message
+            ); // Or you can return an error message or take appropriate action
         }
     }
 }

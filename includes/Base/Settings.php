@@ -56,7 +56,7 @@ class Settings {
         }
 
         // Redirect to the attachment URL on S3
-        $bucketName = S3_BUCKET_NAME;
+        $bucketName = S3MH_BUCKET_NAME;
         $s3Url = "https://$bucketName.s3.amazonaws.com/$s3Key";
         wp_redirect($s3Url);
         exit;
@@ -128,7 +128,7 @@ class Settings {
      */
     private function getS3AttachmentUrl($attachmentID) {
         $metadata = wp_get_attachment_metadata($attachmentID);
-        $bucketName = S3_BUCKET_NAME;
+        $bucketName = S3MH_BUCKET_NAME;
 
         if (isset($metadata['file'])) {
             // Get the S3 bucket URL

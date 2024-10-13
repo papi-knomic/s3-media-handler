@@ -25,18 +25,18 @@ class Admin extends BaseController {
     public function optionsPageContent() {
         if (isset($_POST['submit'])) {
             // Handle form submission here
-            $accessKey = sanitize_text_field($_POST['s3_access_key']);
-            $secretKey = sanitize_text_field($_POST['s3_secret_key']);
-            $bucketName = sanitize_text_field($_POST['s3_bucket_name']);
-            $region = sanitize_text_field($_POST['s3_region']);
+            $accessKey = sanitize_text_field($_POST['s3mh_access_key']);
+            $secretKey = sanitize_text_field($_POST['s3mh_secret_key']);
+            $bucketName = sanitize_text_field($_POST['s3mh_bucket_name']);
+            $region = sanitize_text_field($_POST['s3mh_region']);
 
 
-            update_option('s3_access_key', $accessKey);
-            update_option('s3_secret_key', $secretKey);
-            update_option('s3_bucket_name', $bucketName);
-            update_option('s3_region', $region);
+            update_option('s3mh_access_key', $accessKey);
+            update_option('s3mh_secret_key', $secretKey);
+            update_option('s3mh_bucket_name', $bucketName);
+            update_option('s3mh_region', $region);
 
-            echo '<div class="notice notice-success is-dismissible"><p>Options saved.</p></div>';
+            echo '<div class="notice notice-success is-dismissible"><p>'. __('Options saved.', 's3-media-handler') . '</p></div>';
         }
         ?>
         <div class="wrap">

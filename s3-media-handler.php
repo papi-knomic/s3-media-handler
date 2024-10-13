@@ -21,17 +21,19 @@ if (!defined('WPINC')) {
  * Rename this for your plugin and update it as you release new versions.
  */
 
-$bucket_name = get_option('s3_bucket_name');
-$region = get_option('s3_region');
-$access_key = get_option('s3_access_key');
-$secret_key = get_option('s3_secret_key');
+$bucket_name = get_option('s3mh_bucket_name');
+$region = get_option('s3mh_region');
+$access_key = get_option('s3mh_access_key');
+$secret_key = get_option('s3mh_secret_key');
+$activated = get_option('s3mh_activated');
 
 define('S3_MEDIA_HANDLER_VERSION', '1.0.0');
 define('PLUGIN_OPTION_GROUP', 's3MediaHandlerOptions');
-define('S3_BUCKET_NAME', $bucket_name);
-define('S3_REGION', $region);
-define('S3_ACCESS_KEY', $access_key);
-define('S3_SECRET_KEY', $secret_key);
+define('S3MH_BUCKET_NAME', $bucket_name);
+define('S3MH_REGION', $region);
+define('S3MH_ACCESS_KEY', $access_key);
+define('S3MH_SECRET_KEY', $secret_key);
+define('S3MH_ACTIVATED', $activated);
 
 
 // Require once for the composer autoload

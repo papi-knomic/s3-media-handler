@@ -8,6 +8,6 @@ class Validate {
      * @return bool
      */
     public static function validateOptions() {
-        return S3_BUCKET_NAME && S3_REGION && S3_ACCESS_KEY && S3_SECRET_KEY;
+        return S3MH_BUCKET_NAME && S3MH_REGION && S3MH_ACCESS_KEY && S3MH_SECRET_KEY;
     }
 }
